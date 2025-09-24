@@ -1,70 +1,28 @@
-# React + TypeScript + Vite
+Catálogo Interativo com React e TypeScript
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+O Catálogo Interativo é uma aplicação de página única (SPA) que consome dados de um arquivo JSON local para exibir três catálogos distintos: Animais, Livros e Pessoas.
 
-Currently, two official plugins are available:
+Funcionalidades
+Navegação entre Páginas: Uma barra de navegação persistente permite ao usuário alternar facilmente entre as páginas "Início", "Animais", "Livros", "Pessoas" e "Favoritos".
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Exibição em Cards: Cada item de dado é renderizado em um componente Card reutilizável e estilizado.
 
-## Expanding the ESLint configuration
+Sistema de Favoritos Global: O usuário pode adicionar ou remover qualquer item (seja um animal, livro ou pessoa) de uma lista de favoritos. O estado dessa lista é compartilhado globalmente entre todas as páginas.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Tipagem Forte: Todo o projeto é estritamente tipado com TypeScript, desde a definição dos dados até as props dos componentes e o valor do contexto.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Layout Consistente: Todas as páginas de catálogo seguem um layout padrão, garantido por um componente PageLayout reutilizável.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+Tecnologias Utilizadas
+A aplicação foi construída utilizando um ecossistema de desenvolvimento moderno:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Vite: Ferramenta de build e servidor de desenvolvimento local.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+React: Biblioteca principal para a construção da interface de usuário.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+TypeScript: Superset do JavaScript que adiciona tipagem estática.
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-# teste
+React Router DOM: Biblioteca para gerenciamento de rotas e navegação do lado do cliente.
+
+Context API: Utilizada para o gerenciamento de estado global do sistema de favoritos.
+# Multi-Cat-logo-com-Favoritos-

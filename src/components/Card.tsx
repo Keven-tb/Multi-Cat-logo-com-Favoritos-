@@ -1,4 +1,4 @@
-import type { DataItem } from '../types';
+import { type DataItem, type Animal, type Livro, type Pessoa } from '../types';
 import './Card.css';
 
 interface CardProps {
@@ -7,25 +7,32 @@ interface CardProps {
   isFavorite: boolean;
 }
 
-// Função auxiliar para verificar o tipo (Type Guard)
-function isAnimal(item: DataItem): item is Animal {
-  return 'especie' in item;
+function isAnimal(item: DataItem): item is Animal { 
+  return 'especie' in item; 
 }
 
-function isLivro(item: DataItem): item is Livro {
-  return 'autor' in item;
+function isLivro(item: DataItem): item is Livro { 
+  return 'autor' in item; 
 }
 
-function isPessoa(item: DataItem): item is Pessoa {
-  return 'profissao' in item;
+function isPessoa(item: DataItem): item is Pessoa { 
+  return 'nascimento' in item; 
 }
+
+const getImageUrl = (item: DataItem): string | undefined => {
+  if (isAnimal(item)) return item.imagem;
+  if (isLivro(item)) return item.capa;
+  if (isPessoa(item)) return item.foto;
+  return undefined;
+};
 
 const Card: React.FC<CardProps> = ({ item, onToggleFavorite, isFavorite }) => {
+  const imageUrl = getImageUrl(item);
+
   const renderContent = () => {
     if (isAnimal(item)) {
       return (
         <>
-          <img src={item.imagem} alt={item.nome} className="card-image" />
           <h3>{item.nome}</h3>
           <p>Espécie: {item.especie}</p>
         </>
@@ -44,8 +51,8 @@ const Card: React.FC<CardProps> = ({ item, onToggleFavorite, isFavorite }) => {
       return (
         <>
           <h3>{item.nome}</h3>
-          <p>Profissão: {item.profissao}</p>
-          <p>Nascimento: {item.nascimento}</p>
+          <p>Área: {item.area}</p>
+          <p>Nascimento: {new Date(item.nascimento).toLocaleDateString()}</p>
         </>
       );
     }
@@ -54,7 +61,11 @@ const Card: React.FC<CardProps> = ({ item, onToggleFavorite, isFavorite }) => {
 
   return (
     <div className="card">
-      {renderContent()}
+      {/* Renderiza a imagem apenas se a URL existir */}
+      {imageUrl && <img src={imageUrl} alt="Imagem do item" className="card-image" />}
+      <div className="card-content">
+        {renderContent()}
+      </div>
       <button onClick={() => onToggleFavorite(item)}>
         {isFavorite ? 'Desfavoritar' : 'Favoritar'}
       </button>

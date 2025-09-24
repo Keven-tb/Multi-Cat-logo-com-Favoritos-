@@ -1,18 +1,14 @@
-// src/context/FavoritesContext.tsx
 import { createContext, useState, useContext, type ReactNode } from 'react';
-import type { DataItem } from '../types';
+import { type DataItem } from '../types';
 
-// 1. Definir a "forma" do contexto
 interface FavoritesContextType {
   favorites: DataItem[];
   toggleFavorite: (item: DataItem) => void;
-  isFavorite: (id: number) => boolean;
+  isFavorite: (id: string) => boolean;
 }
 
-// 2. Criar o Contexto
 const FavoritesContext = createContext<FavoritesContextType | undefined>(undefined);
 
-// 3. Criar o Provedor (Provider)
 interface FavoritesProviderProps {
   children: ReactNode;
 }
@@ -24,14 +20,15 @@ export const FavoritesProvider: React.FC<FavoritesProviderProps> = ({ children }
     setFavorites(prevFavorites => {
       const isAlreadyFavorite = prevFavorites.some(fav => fav.id === item.id);
       if (isAlreadyFavorite) {
-        return prevFavorites.filter(fav => fav.id !== item.id); // Remove
+        return prevFavorites.filter(fav => fav.id !== item.id);
       } else {
-        return [...prevFavorites, item]; // Adiciona
+        return [...prevFavorites, item];
       }
     });
   };
 
-  const isFavorite = (id: number) => {
+  // A função isFavorite agora espera um ID do tipo string
+  const isFavorite = (id: string) => {
     return favorites.some(fav => fav.id === id);
   };
 
@@ -42,7 +39,6 @@ export const FavoritesProvider: React.FC<FavoritesProviderProps> = ({ children }
   );
 };
 
-// 4. Criar um Hook customizado para facilitar o uso
 export const useFavorites = () => {
   const context = useContext(FavoritesContext);
   if (context === undefined) {

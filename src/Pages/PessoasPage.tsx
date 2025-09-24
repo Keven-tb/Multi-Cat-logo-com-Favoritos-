@@ -1,22 +1,21 @@
-// src/pages/AnimaisPage.tsx
-import Card from '../components/card';
+import Card from '../components/Card';
 import dados from '../Dados/dados.json';
 import { useFavorites } from '../components/FavoritesContext';
 import './PageLayout.css';
 
-const AnimaisPage = () => {
+const PessoasPage = () => {
   const { toggleFavorite, isFavorite } = useFavorites();
 
   return (
     <div className="page-container">
-      <h2>Animais</h2>
+      <h2>Pessoas</h2>
       <div className="card-grid">
-        {dados.animais.map(animal => (
+        {dados.pessoas.map(pessoas => (
           <Card
-            key={animal.id}
-            item={animal}
+            key={pessoas.id}
+            item={pessoas}
             onToggleFavorite={toggleFavorite}
-            isFavorite={isFavorite(animal.id)}
+            isFavorite={isFavorite(pessoas.id)}
           />
         ))}
       </div>
@@ -24,4 +23,4 @@ const AnimaisPage = () => {
   );
 };
 
-export default AnimaisPage;
+export default PessoasPage;
