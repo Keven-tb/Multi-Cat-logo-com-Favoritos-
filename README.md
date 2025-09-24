@@ -27,3 +27,4 @@ React Router DOM: Biblioteca para gerenciamento de rotas e navegação do lado d
 Context API: Utilizada para o gerenciamento de estado global do sistema de favoritos.
 # Multi-Cat-logo-com-Favoritos-
 # Multi-Cat-logo-com-Favoritos-
+# Multi-Cat-logo-com-Favoritos-
