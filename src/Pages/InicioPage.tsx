@@ -3,8 +3,24 @@ import "./PageLayout.css"
 const InicioPage = () => {
     return(
         <>
-            <h2>Pagina inicial do Multi-Catálogo</h2>
-            <p>Navegue utilizando a Barra de Navegação.</p>
+            <h2>Adcione sua tarefa logo abaixo</h2>
+            <form>
+                <div>
+                    <label>
+                    Nome da Tarefa:
+                    <input type="text" name="text" />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                    Descrição:
+                    <input type="text" name="text" />
+                    </label>
+                </div>
+                <div>
+                    <button type="reset">Adicionar</button>
+                </div>
+            </form>
         </>
     )
 }
