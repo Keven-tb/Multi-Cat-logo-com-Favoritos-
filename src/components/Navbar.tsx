@@ -1,13 +1,11 @@
 import { NavLink } from 'react-router-dom';
-import './Navbar.css';
 
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/favoritos">Favoritos</NavLink>
+      <NavLink to="/">Todas as Tarefas</NavLink>
+      <NavLink to="/favoritos">Favoritas</NavLink>
     </nav>
   );
 };
-
 export default Navbar;
